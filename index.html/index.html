@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edmartyy | My Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="frame" aria-hidden="true"></div>
+  <div class="dark" id="dark" aria-hidden="true"></div>
+
+  <!-- HUD: passport stamps + 45s ring -->
+  <header class="hud">
+    <div class="passport">
+      <b class="hand">My Passport <span id="pcount">0</span>/6</b>
+      <div class="stamps" id="stamps"></div>
+    </div>
+    <div class="clock" title="Time you've spent here">
+      <svg viewBox="0 0 36 36" width="46" height="46" aria-hidden="true">
+        <circle cx="18" cy="18" r="15" class="ring-bg" />
+        <circle cx="18" cy="18" r="15" class="ring-fg" id="ringFg" />
+      </svg>
+      <span id="clockNum">0</span>
+    </div>
+  </header>
+
+  <main class="board" id="board">
+    <canvas id="doodle" aria-hidden="true"></canvas>
+
+    <!-- 1. HERO NOTE -->
+    <section class="piece paper c7" style="--r:-1.2deg">
+      <span class="pin tape"></span>
+      <p class="hand tiny">hello, Edmar T. Bulawin Jr</p>
+      <h1 class="name">Edmar
+        <svg class="scribble" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C60 2, 120 20, 180 8 S270 4, 296 11" /></svg>
+      </h1>
+      <p class="role hand">...and I'm a <span id="typed"></span><span class="caret">▍</span></p>
+      <p class="lead">This whole desk is alive. <b>Drag</b> notes around, <b>scratch</b> the silver card, <b>click</b> things, or turn off the lights. Collect all <b>6 stamps</b> in your passport ↖</p>
+    </section>
+
+    <!-- 2. POLAROID -->
+    <figure class="piece polaroid c5" style="--r:3deg" id="polaroid">
+      <span class="pin tack"></span>
+      <div class="shot">
+        <!-- Put your picture in this folder and name it photo.jpg -->
+        <img id="photoImg" src="rene.jpg" alt="Photo of Your Name" draggable="false" />
+        <div class="flash"></div>
+      </div>
+      <figcaption class="hand">Edmartyy, 2026 ✌️</figcaption>
+      <span class="hint hand">↑ tap to take a pic!</span>
+    </figure>
+
+    <!-- 3. ABOUT INDEX CARD -->
+    <article class="piece index c5" style="--r:1.6deg">
+      <span class="pin tack"></span>
+      <h2 class="hand">About me</h2>
+      <p>
+I am Edmar T. Bulawin Jr., a 3rd-year student at the University of Cebu.
+ Passionate about tech, UI/UX design, and software development,
+  I love turning creative concepts into smooth, user-friendly digital experiences. 
+  Driven by curiosity and continuous learning, I aspire to become a skilled UI/UX 
+  designer and software engineer crafting impactful web and mobile solutions.
+      </p>
+      <ul class="facts">
+        <li>📍 <b>From:</b>  Lawis Alaska Mambaling Cebu City.</li>
+        <li>🎓 <b>Studying:</b> Information Technology</li>
+        <li>💬 <b>Speaks:</b> English, Filipino, Bisaya</li>
+        <li>🎯 <b>Goal:</b>  Software Developer</li>
+      </ul>
+      <div class="stats">
+        <div><b data-count="20">0</b><small>years old</small></div>
+        <div><b data-count="12">0</b><small>projects</small></div>
+        <div><b data-count="999">0</b><small>coffees ☕</small></div>
+      </div>
+    </article>
+
+    <!-- 4. SKILLS (graph paper) -->
+    <article class="piece graph c7" style="--r:-1deg" id="skills">
+      <span class="pin tape"></span>
+      <h2 class="hand">Skill sheet <small>(tap a row to redraw it)</small></h2>
+      <div class="skill" data-level="90"><span>HTML &amp; CSS</span><div class="pencil"><i></i></div><em>90%</em></div>
+      <div class="skill" data-level="75"><span>JavaScript</span><div class="pencil"><i></i></div><em>75%</em></div>
+      <div class="skill" data-level="80"><span>Problem solving</span><div class="pencil"><i></i></div><em>80%</em></div>
+      <div class="skill" data-level="85"><span>Netwoking</span><div class="pencil"><i></i></div><em>85%</em></div>
+      <div class="skill" data-level="70"><span>Creative design</span><div class="pencil"><i></i></div><em>70%</em></div>
+    </article>
+
+    <!-- 5. HOBBIES (sticker sheet) -->
+    <article class="piece sticky c5" style="--r:-2deg">
+      <span class="pin tack"></span>
+      <h2 class="hand">Hobbies &amp; interests</h2>
+      <div class="stickers">
+        <button class="sticker" style="--sr:-6deg" data-msg="🎮 Gaming: Hooked on Valorant, CrossFire, and Mobile Legends for the intense teamwork and clutch moments.">🎮</button>
+        <button class="sticker" style="--sr:5deg"  data-msg="🎵 Music: Always on repeat: Justin Bieber and Joji—blending smooth Pop, R&B, and soulful lo-fi vibes.">🎵</button>
+        <button class="sticker" style="--sr:-3deg" data-msg="📸 Photography: Capturing life’s moments frame by frame loving creative photo editing, sharp angles, and visual storytelling.">📸</button>
+        <button class="sticker" style="--sr:7deg"  data-msg="🏐 Sports: Always up for a game of badminton fast-paced, high energy, and pure fun.which sport, and your proudest moment?">🏐</button>
+        <button class="sticker" style="--sr:-8deg" data-msg="✈️ Travel: Loving new adventures, discovering hidden spots, and making memories along the way">✈️</button>
+        <button class="sticker" style="--sr:4deg"  data-msg="🍜 Food: Fueled by good meals, sweet treats, and exploring new food places.">🍜</button>
+        <button class="sticker" style="--sr:-4deg" data-msg="💻 Tech: Fascinated by building systems, coding projects, and modern tech trends.">💻</button>
+        <button class="sticker" style="--sr:6deg"  data-msg="🎬 Movies: Enjoying late night movie marathons and unforgettable cinematic experiences.">🎬</button>
+      </div>
+      <p class="bubble hand" id="bubble">👆 Pick a sticker to hear more!</p>
+    </article>
+
+    <!-- 6. SCRATCH CARD -->
+    <article class="piece ticket c3" style="--r:2.2deg">
+      <span class="pin tack"></span>
+      <h2 class="hand">Secret fact</h2>
+      <div class="scratch-wrap" data-nodrag>
+        <div class="secret hand">Im scamming kids in roblox hehehe</div>
+        <canvas id="scratch"></canvas>
+      </div>
+      <p class="tiny hand">scratch the silver ↑</p>
+    </article>
+
+    <!-- 7. GUESS THE LIE -->
+    <article class="piece guess c4" style="--r:-1.8deg">
+      <span class="pin tape"></span>
+      <h2 class="hand">Spot the lie 🕵️</h2>
+      <button class="sn" data-lie="false">I can run in 200km.</button>
+      <button class="sn" data-lie="true">I Scam kids and older than me in roblox.</button>
+      <button class="sn" data-lie="false">I once met a famous person by accident.</button>
+      <p class="result hand" id="guessResult"></p>
+    </article>
+
+    <!-- 8. POSTCARD CONTACT -->
+    <article class="piece postcard c12" style="--r:.8deg">
+      <span class="pin tack"></span>
+      <div class="pc-left">
+        <h2 class="hand">Wish you were here!</h2>
+        <p>Thanks for stopping by my desk. If you liked it, say hi, I reply fast (especially if there's coffee).</p>
+        <button class="surprise" id="surprise">🎁 Surprise me</button>
+      </div>
+      <div class="pc-right">
+        <div class="stampbox"><span>✉️</span><small>PH · 2026</small></div>
+        <a href="mailto:edmarbulawin59@gmail.com">✉️ youremail@example.com</a>
+        <a href="https://github.com/edmartyy" target="_blank" rel="noopener">🐙 github.com/yourusername</a>
+        <a href="https://www.facebook.com/edmartyy" target="_blank" rel="noopener">📘 facebook.com/yourusername</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- Toolbar -->
+  <nav class="tools" aria-label="Desk tools">
+    <button id="lightBtn" title="Turn the lights off/on">💡 Lights</button>
+    <button id="penBtn" title="Doodle on the board">✏️ Doodle</button>
+    <button id="clearBtn" title="Erase doodles">🧽 Erase</button>
+    <button id="scatterBtn" title="Throw everything around">🎲 Scatter</button>
+    <button id="tidyBtn" title="Put everything back">🧲 Tidy</button>
+  </nav>
+
+  <div class="toast hand" id="toast" role="status" aria-live="polite"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
